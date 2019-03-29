@@ -5,5 +5,27 @@
         "http://struts.apache.org/dtds/struts-2.0.dtd">
 
 <struts>
+    <package name="default"  extends="struts-default">
 
+        <global-results>
+            <result name="sql_Exception">/Exception_sql.jsp</result>
+        </global-results>
+        <global-exception-mappings>
+            <exception-mapping exception="java.sql.SQLException" result="sql_Exception"/>
+        </global-exception-mappings>
+
+
+        <action name="exception" class="Exception">
+            <exception-mapping exception="java.io.IOException" result="io_ex"/>
+            <result name="io_ex">/Exception_io.jsp</result>
+        </action>
+
+        <action name="check" class="pac.InterCheck">
+            <result name="InputNull">/InputNull.jsp</result>
+            <result name="Hello">/Hello.jsp</result>
+        </action>
+
+
+    </package>
+    <include file="sec.xml"/>
 </struts>

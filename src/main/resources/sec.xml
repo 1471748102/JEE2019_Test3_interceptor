@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+        "http://struts.apache.org/dtds/struts-2.5.dtd">
+
+<struts>
+    <package name="sec" namespace="/sec" extends="struts-default">
+        <interceptors>
+            <interceptor name="inter" class="InterLogin">
+            </interceptor>
+            <interceptor-stack name="inter">
+                <interceptor-ref name="inter"></interceptor-ref>
+                <interceptor-ref name="defaultStack"></interceptor-ref>
+            </interceptor-stack>
+        </interceptors>
+        <default-interceptor-ref name="inter"/>
+
+
+        <action name="private" class="sec.MyAction">
+            <result>/Interceptor_login.jsp</result>
+            <result name="defuse">/Interceptor_fail.jsp</result>
+            <interceptor-ref name="inter"/>
+        </action>
+    </package>
+</struts>
